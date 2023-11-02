@@ -11,7 +11,7 @@ var i = 0;
 
 // Loop through each product in the data
 for (i = 0; i < products.length; i++) {
-  // Send product information to Google Analytics Enhanced Ecommerce
+  // Send product information to Coveo Analytics
   coveoua('ec:addProduct', {
     'name': products[i].item_name,
     'id': products[i].item_id,
@@ -22,7 +22,7 @@ for (i = 0; i < products.length; i++) {
   });
 }
 
-// Set the action for Google Analytics Enhanced Ecommerce as a 'purchase'
+// Set the action for Coveo Analytics Ecommerce as a 'purchase'
 coveoua('ec:setAction', 'purchase', {
   'id': '{{ecommerce.transaction_id}}',
   'revenue': '{{ecommerce.value}}',
@@ -30,7 +30,7 @@ coveoua('ec:setAction', 'purchase', {
   'currencyCode': 'CAD'
 });
 
-// Send an event to Google Analytics
+// Send an event to Coveo Analytics
 coveoua('send', 'event');
 </script>
 
