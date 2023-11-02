@@ -27,7 +27,7 @@ coveoua('ec:setAction', 'purchase', {
   'id': '{{ecommerce.transaction_id}}',
   'revenue': '{{ecommerce.value}}',
   'tax': '{{ecommerce.tax}}',
-  'currencyCode': 'CAD'  // Add the Code based on where you sell the products - CAD, USD etc.
+  'currencyCode': 'USD'  // Add the Code based on where you sell the products - CAD, USD etc.
 });
 
 // Send an event to Coveo Analytics
