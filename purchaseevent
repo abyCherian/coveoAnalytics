@@ -1,0 +1,37 @@
+// This script collects information about products and sends data to Coveo Analytics through Google Tag Manager
+<script>
+// Retrieve product data from the data layer using Google Tag Manager
+var products = google_tag_manager[{{Container ID}}].dataLayer.get("ecommerce.items");
+
+// Log the number of products in the data
+console.log(products.length);
+
+// Initialize a counter variable
+var i = 0;
+
+// Loop through each product in the data
+for (i = 0; i < products.length; i++) {
+  // Send product information to Google Analytics Enhanced Ecommerce
+  coveoua('ec:addProduct', {
+    'name': products[i].item_name,
+    'id': products[i].item_id,
+    'category': products[i].item_category,
+    'price': products[i].price,
+    'brand': products[i].item_brand,
+    'quantity': products[i].quantity
+  });
+}
+
+// Set the action for Google Analytics Enhanced Ecommerce as a 'purchase'
+coveoua('ec:setAction', 'purchase', {
+  'id': '{{ecommerce.transaction_id}}',
+  'revenue': '{{ecommerce.value}}',
+  'tax': '{{ecommerce.tax}}',
+  'currencyCode': 'CAD'
+});
+
+// Send an event to Google Analytics
+coveoua('send', 'event');
+</script>
+
+// Ensure to add the Purchase event trigger to deploy the Tag
